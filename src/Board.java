@@ -14,20 +14,17 @@ import java.util.ArrayList;
 public class Board extends JPanel {
     private static JLabel score1;
     private static JLabel score2;
-
     private static JButton newGame;
     private static JButton undo;
 
     private static JButton [] cell;
     private static Reversi board;
     private static final ArrayList<Reversi> arrReversi = new ArrayList<>();
-
     private static int countUndo = 0;
     private static int playerScore = 2;
     private static int pcScore = 2;
 
     private static Reversi start;
-
     private static final int rows = 8;
     private static final int cols = 8;
     private static final Color col = Color.green;
@@ -139,7 +136,7 @@ public class Board extends JPanel {
         add(scorePanel, BorderLayout.EAST);
     }
 
-    public static BufferedImage loadImage(String path){
+    public static BufferedImage loadImage(String path) {
         try {
             return ImageIO.read(Board.class.getResource(path));
         } catch (IOException e) {
@@ -190,9 +187,12 @@ public class Board extends JPanel {
                 if (arrReversi.size() - countUndo - 1 >= 0) {
                     for (int i = 0; i < rows; i++) {
                         for (int j = 0; j < cols; j++) {
-                            c = arrReversi.get(arrReversi.size() - countUndo - 1).gameCells[i][j].getCh();
-                            x = arrReversi.get(arrReversi.size() - countUndo - 1).gameCells[i][j].getCorX();
-                            y = arrReversi.get(arrReversi.size() - countUndo - 1).gameCells[i][j].getCorY();
+                            c = arrReversi.get(arrReversi.size() - countUndo - 1)
+                                    .gameCells[i][j].getCh();
+                            x = arrReversi.get(arrReversi.size() - countUndo - 1)
+                                    .gameCells[i][j].getCorX();
+                            y = arrReversi.get(arrReversi.size() - countUndo - 1)
+                                    .gameCells[i][j].getCorY();
                             board.gameCells[i][j].setPosition(x, c, y); 
                         }
                     }
@@ -289,7 +289,8 @@ public class Board extends JPanel {
 
                             for (int j = 0; j < arrList.size(); j += 2) {
                                 Image legal = loadImage("/legalMoveIcon.png");
-                                cell[arrList.get(j) * rows + arrList.get(j + 1)].setIcon(new ImageIcon(legal));
+                                cell[arrList.get(j) * rows + arrList.get(j + 1)].
+                                        setIcon(new ImageIcon(legal));
                             }
 
                             board.controlElements(arr);
@@ -303,10 +304,12 @@ public class Board extends JPanel {
                 int st = board.endOfGame();
                 if (st == 0) {
                     if (playerScore > pcScore)
-                        JOptionPane.showMessageDialog(null,"No legal move!\nPlayer Win!",
+                        JOptionPane.showMessageDialog(null,
+                                "No legal move!\nPlayer Win!",
                                 "Game Over",JOptionPane.PLAIN_MESSAGE);
                     else
-                        JOptionPane.showMessageDialog(null,"No legal move!\nAI Win!",
+                        JOptionPane.showMessageDialog(null,
+                                "No legal move!\nAI Win!",
                                 "Game Over",JOptionPane.PLAIN_MESSAGE);
                 } else if (st == 1 || st == 3) {
                     ImageIcon defeat = new ImageIcon(loadImage("/lose.png"));

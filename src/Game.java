@@ -8,7 +8,6 @@ import java.io.IOException;
  * @author Dmitriy Stepanov
  */
 public class Game extends JFrame {
-
     /**
      * Constructor - creating a new game
      * @see Game#Game()
